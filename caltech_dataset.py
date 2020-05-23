@@ -5,7 +5,7 @@ import numpy as np
 import os
 import os.path
 import sys
-from caltech_utils import CaltechUtils
+from caltech_utils.py import CaltechUtils
 
 class Caltech(VisionDataset):
     def __init__(self, root, split='train', transform=None, target_transform=None):
