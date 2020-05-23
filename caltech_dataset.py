@@ -7,6 +7,11 @@ import os.path
 import sys
 
 class CaltechUtils():
+    def __init__(self):
+      print("Initialize CaltechUtils")
+      return
+      pass
+
     def pil_loader(path):
     # open path as file to avoid ResourceWarning (https://github.com/python-pillow/Pillow/issues/835)
     with open(path, 'rb') as f:
