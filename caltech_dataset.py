@@ -1,3 +1,11 @@
+from torchvision.datasets import VisionDataset
+from random import shuffle, randint
+from PIL import Image
+import numpy as np
+import os
+import os.path
+import sys
+
 class Caltech(VisionDataset):
     def __init__(self, root, split='train', transform=None, target_transform=None):
         super(Caltech, self).__init__(root, transform=transform, target_transform=target_transform)
