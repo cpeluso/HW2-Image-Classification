@@ -1,3 +1,5 @@
+from .caltech_utils import CaltechUtils
+
 from torchvision.datasets import VisionDataset
 from random import shuffle, randint
 from PIL import Image
@@ -5,8 +7,19 @@ import numpy as np
 import os
 import os.path
 import sys
+import logging
 import torch
-from .caltech_utils import CaltechUtils
+import torch.nn as nn
+import torch.optim as optim
+from torch.utils.data import Subset, DataLoader
+from torch.backends import cudnn
+import torchvision
+from torchvision import transforms
+from torchvision.models import alexnet
+from tqdm import tqdm
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
 
 class Caltech(VisionDataset):
     def __init__(self, root, split='train', transform=None, target_transform=None):
