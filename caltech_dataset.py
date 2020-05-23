@@ -5,6 +5,7 @@ import numpy as np
 import os
 import os.path
 import sys
+import torch
 from .caltech_utils import CaltechUtils
 
 class Caltech(VisionDataset):
