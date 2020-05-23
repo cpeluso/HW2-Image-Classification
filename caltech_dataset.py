@@ -6,20 +6,6 @@ import os
 import os.path
 import sys
 
-def pil_loader(path):
-    # open path as file to avoid ResourceWarning (https://github.com/python-pillow/Pillow/issues/835)
-    with open(path, 'rb') as f:
-        img = Image.open(f)
-        return img.convert('RGB')
-
-def get_index(annotations, tuple):
-  index = 0
-  for annotation in annotations:
-    if annotation == tuple:
-      return index
-    else:
-      index += 1
-
 class Caltech(VisionDataset):
     def __init__(self, root, split='train', transform=None, target_transform=None):
         super(Caltech, self).__init__(root, transform=transform, target_transform=target_transform)
@@ -86,10 +72,10 @@ class Caltech(VisionDataset):
           eval_partial_indices = []
 
           for data in train_data:
-            train_partial_indices.append(get_index(self.annotations, data))
+            train_partial_indices.append(self.get_index(self.annotations, data))
 
           for data in eval_data:
-            eval_partial_indices.append(get_index(self.annotations, data))
+            eval_partial_indices.append(self.get_index(self.annotations, data))
 
           train_indices.append(train_partial_indices)
           eval_indices.append(eval_partial_indices)
@@ -112,7 +98,7 @@ class Caltech(VisionDataset):
         '''
         img_path = os.path.join(self.root, self.annotations[index].rstrip())
         label = str(self.annotations[index]).split("/")[0]
-        image = pil_loader(img_path)
+        image = self.pil_loader(img_path)
 
         # Applies preprocessing when accessing the image
         if self.transform is not None:
@@ -129,3 +115,19 @@ class Caltech(VisionDataset):
         length = len(self.annotations)
         return length
         pass
+    
+    def pil_loader(path):
+    # open path as file to avoid ResourceWarning (https://github.com/python-pillow/Pillow/issues/835)
+    with open(path, 'rb') as f:
+        img = Image.open(f)
+        return img.convert('RGB')
+    pass
+
+    def get_index(annotations, tuple):
+      index = 0
+      for annotation in annotations:
+        if annotation == tuple:
+          return index
+        else:
+          index += 1
+    pass
