@@ -3,14 +3,14 @@ class CaltechUtils():
         print("Initialize CaltechUtils")
         pass
 
-    def pil_loader(path):
+    def pil_loader(self, path):
         # open path as file to avoid ResourceWarning (https://github.com/python-pillow/Pillow/issues/835)
         with open(path, 'rb') as f:
             img = Image.open(f)
             return img.convert('RGB')
         pass
 
-    def get_index(annotations, tuple):
+    def get_index(self, annotations, tuple):
         index = 0
         for annotation in annotations:
             if annotation == tuple:
