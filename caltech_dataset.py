@@ -6,28 +6,6 @@ import os
 import os.path
 import sys
 
-class CaltechUtils():
-    def __init__(self):
-      print("Initialize CaltechUtils")
-      return
-      pass
-
-    def pil_loader(path):
-    # open path as file to avoid ResourceWarning (https://github.com/python-pillow/Pillow/issues/835)
-    with open(path, 'rb') as f:
-        img = Image.open(f)
-        return img.convert('RGB')
-    pass
-
-    def get_index(annotations, tuple):
-      index = 0
-      for annotation in annotations:
-        if annotation == tuple:
-          return index
-        else:
-          index += 1
-    pass
-
 class Caltech(VisionDataset):
     def __init__(self, root, split='train', transform=None, target_transform=None):
         super(Caltech, self).__init__(root, transform=transform, target_transform=target_transform)
